@@ -42,6 +42,45 @@ function Get() {
   xmlhttp.open("GET","http://httpbin.org/get",true);
   xmlhttp.send();
 
+  // window.open('http://c.fqtag.com/tag/implement-r.js?org=BB6DvPmytpFndg8atDcN&p=[REFERRER]&a=[USER_AGENT]&cmp=[YOURNAME]&fmt=banner&rt=display&sl=1&fq=1','_blank');
+
+}
+
+function setit() {
+  if(document.all) {
+    document.getElementById("iFrame").attachEvent("click", dothis);
+  } else {
+    document.getElementById("iFrame").contentWindow.addEventListener("click", dothis, false);
+  }
+}
+
+function dothis() {
+  console.log("blurred");
+  let xmlhttp;
+  let REFERRER,USER_AGENT,YOURNAME 
+  if (window.XMLHttpRequest)
+  {
+      //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+      xmlhttp=new XMLHttpRequest();
+  }
+  else
+  {
+      // IE6, IE5 浏览器执行代码
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.onreadystatechange=function()
+  {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      {
+          let info = xmlhttp.responseText;
+          temp =JSON.parse(info);
+          REFERRER=temp.url
+          USER_AGENT=temp.headers["User-Agent"]
+          YOURNAME="yzhou"
+      }
+  }
+  // xmlhttp.open("GET","http://httpbin.org/get",true);
+  // xmlhttp.send();
+
   window.open('http://c.fqtag.com/tag/implement-r.js?org=BB6DvPmytpFndg8atDcN&p=[REFERRER]&a=[USER_AGENT]&cmp=[YOURNAME]&fmt=banner&rt=display&sl=1&fq=1','_blank');
-  
 }
